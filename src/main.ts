@@ -9,40 +9,45 @@ const progression = document.getElementById("progression") as HTMLInputElement;
 const list = document.getElementById("courseList") as HTMLInputElement;
 const errorMessage = document.getElementById("errorMessage") as HTMLInputElement;
 
-//Laddar kurser från local storage
-window.onload = () => {
-  loadCourses();
-  displayBtn();
-}
-
-
 
 //Eventlyssnare
+window.onload = (): void => {
+  loadCourses();
+  displayBtn();
+
+}
+
 addBtn.addEventListener("click", function(): void {
   if(name.value !== "" && code.value !== "" && link.value !== "" && progression.value !== "notSelected") {
     newObj();
     saveCourses();
+    displayBtn();
 
-    console.log(list.children.length)
   } else {
     errorMessage.innerHTML = "Fyll i alla fält.";
+
   }
 });
 
+
 function displayBtn(): void {
-  if(list.children.length > 0){
+  const style = getComputedStyle(removeBtn);
+
+  if(list.children.length > 0 || list.children.length > 0 && style.display === "none"){
     removeBtn.style.display = "block";
 
     removeBtn.addEventListener("click", function(): void {
-
       localStorage.clear();
       list.innerHTML = "";
+      removeBtn.style.display = "none";
     
     });
 
   } else {
     removeBtn.style.display = "none";
+
   }
+
 }
 
 
@@ -182,6 +187,8 @@ function loadCourses(): void {
 
   const uniqueCourses = JSON.parse(localStorage.getItem('myCourses') ?? '{}');
 
-  addCourses(uniqueCourses);
+  if(uniqueCourses.length > 0) {
+    addCourses(uniqueCourses);
+  }
 
 }
