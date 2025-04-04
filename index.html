@@ -10,19 +10,22 @@
     <main>
       <h1>Webbutvecklingsprogrammet</h1>
       <!-- Input för att lägga till kurser -->
-      <label for="courseName">Kursnamn: </label>
-      <input type="text" id="courseName" name="search" placeholder="TypeScript">
-      <label for="courseCode">Kurskod: </label>
-      <input type="text" id="courseCode" name="courseCode" placeholder="DT2008G">
-      <label for="link">Länk: </label>
-      <input type="url" id="link" name="link" placeholder="www.miun.se/typescript">
-      <label for="progression">Progression: </label>
-      <select id="progression" name="progression">
-        <option value="notSelected" hidden >Välj</option>
-        <option value="A">A</option>
-        <option value="B">B</option>
-      </select>
+      <div id="inputs">
+        <label for="courseName">Kursnamn: </label>
+        <input type="text" id="courseName" name="search" placeholder="TypeScript">
+        <label for="courseCode">Kurskod: </label>
+        <input type="text" id="courseCode" name="courseCode" placeholder="DT2008G">
+        <label for="link">Länk: </label>
+        <input type="url" id="link" name="link" placeholder="www.miun.se/typescript">
+        <label for="progression">Progression: </label>
+        <select id="progression" name="progression">
+          <option value="notSelected" hidden >Välj</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+        </select>
+      </div>
       <button id="add">Lägg till</button>
+      <span id="errorMessage"></span>
       <!-- Div som läser ut kurser -->
       <div id="courseDiv">
         <table>
@@ -37,6 +40,7 @@
             
           </tbody>
         </table>
+        <button id="remove">Rensa</button>
       </div>
     </main>
     <script type="module" src="/src/main.ts"></script>
