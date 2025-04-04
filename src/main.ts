@@ -63,7 +63,7 @@ const courseArr: course[] = [];
 
 
 //Skapar objekt med kurs och lägger till i array
-function newObj () {
+function newObj (): void {
 
   const newCourse: course = {
     courseName: name.value,
@@ -142,24 +142,23 @@ function saveCourses(): void {
     //Loopar igenom kollektion med p-element
     for(let i = 0; i < allNames.length; i++) {
 
-      const currentName = allNames.item(i)?.childNodes;
-      const currentCode = allCodes.item(i)?.childNodes;
-      const currentLink = allLinks.item(i)?.getAttribute("href");
-      const currentProgress = allProgress.item(i)?.childNodes;
+      const currentName: any = allNames.item(i)?.childNodes;
+      const currentCode: any = allCodes.item(i)?.childNodes;
+      const currentLink: any = allLinks.item(i)?.getAttribute("href");
+      const currentProgress: any = allProgress.item(i)?.childNodes;
 
       linksArr.push(currentLink ?? "");
 
-
       //Loopar igenom kollektion med textnodes
-      currentName?.forEach((node) => {
+      currentName?.forEach((node: any) => {
         namesArr.push(node.textContent ?? "");
       })
 
-      currentCode?.forEach((node) => {
+      currentCode?.forEach((node: any) => {
         codesArr.push(node.textContent ?? "");
       })
 
-      currentProgress?.forEach((node) => {
+      currentProgress?.forEach((node: any) => {
         progressArr.push(node.textContent ?? "");
       })
       
@@ -185,7 +184,7 @@ function saveCourses(): void {
 //Läser ut kurser från local storage
 function loadCourses(): void {
 
-  const uniqueCourses = JSON.parse(localStorage.getItem('myCourses') ?? '{}');
+  const uniqueCourses: course[] = JSON.parse(localStorage.getItem('myCourses') ?? '{}');
 
   if(uniqueCourses.length > 0) {
     addCourses(uniqueCourses);
